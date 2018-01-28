@@ -1,0 +1,138 @@
+swagger: '2.0'
+info:
+  description: >-
+    This is a sample of what BE DO
+  version: 1.0.0-alpha
+  title: BE
+host: bruinentreprenuers.org
+basePath: /bmu
+tags:
+  - name: users
+    description: Find and create users
+  - name: auth
+    description: Handles logging in and out
+  - name: events
+    description: Handles event actions
+schemes:
+  - https
+paths:
+  /users:
+    post:
+      tags:
+        - users
+      operationId: createUser
+      summary: Create a new BMU users
+      responses:
+        '201':
+          description: User successfully created
+    get:
+      tags:
+        - users
+      operationId: getUser
+      summary: Gets an existing BMU user
+      responses:
+        '200':
+          description: User successfully gotten
+      parameters:
+        - name: id
+          in: query
+          description: User being queried
+          required: false
+          type: integer
+    patch:
+      tags:
+        - users
+      operationId: updateUser
+      summary: Updates an existing BMU user
+      responses:
+        '200':
+          description: User successfully updated
+      parameters:
+        - name: id
+          in: query
+          description: User being queried
+          required: true
+          type: integer
+    delete:
+      tags:
+        - users
+      operationId: deleteUser
+      summary: Delete an existing BMU user
+      responses:
+        '200':
+          description: User successfully deleted
+      parameters:
+        - name: id
+          in: query
+          description: User being queried
+          required: true
+          type: integer
+          
+  /events:
+    post:
+      tags:
+        - events
+      operationId: createEvent
+      summary: Create a new BMU event
+      responses:
+        '201':
+          description: Event successfully created
+    get:
+      tags:
+        - events
+      operationId: recieveEvents
+      summary: Receives a list of events that satisfy the query parameters
+      parameters:
+        - name: user
+          in: query
+          description: User being queried
+          required: false
+          type: integer
+        - name: time-begin
+          in: query
+          description: Start time for query
+          required: false
+          type: string
+        - name: time-end
+          in: query
+          description: End time for query
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Events successfully created
+    patch:
+      tags:
+        - events
+      operationId: updateEvent
+      summary: Update an existing BMU event
+      responses:
+        '200':
+          description: Event successfully updated
+      parameters:
+        - name: id
+          in: query
+          description: Event being queried
+          required: true
+          type: integer
+    delete:
+      tags:
+        - events
+      operationId: deleteEvent
+      summary: Deletes an existing BMU event
+      responses:
+        '200':
+          description: Event successfully deleted
+      parameters:
+        - name: id
+          in: query
+          description: Event being queried
+          required: true
+          type: integer
+
+securityDefinitions:
+  todo:
+    type: basic
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'
